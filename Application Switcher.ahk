@@ -4,16 +4,23 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
+
 ; Set lock keys permanently
+
+; Num Lock
 SetNumlockState, AlwaysOn
 Return
 
 
-; Turn a bunch of keys into other functions
+
+; Turn underutilized keys to more useful functions
+
+; Control + Capslock --> Capslock
 ^Capslock::
 SetCapsLockState, % GetKeyState("Capslock","t") ? "Off" : "On" ;toggle capslock
 Return
 
+; Shift + Capslock and Control + Shift + Capslock --> new web browser gmail tab and also highlight url field
 +Capslock::
 {
  Run, http://mail.google.com
@@ -21,7 +28,6 @@ Return
  Send, ^l
  Return
 }
-
 ^+Capslock::
 {
  Run, http://mail.google.com
@@ -30,7 +36,7 @@ Return
  Return
 }
 
-
+; Other keys for more efficient inputs
 Capslock::
 Send {enter}
 Return
@@ -52,7 +58,9 @@ Send {tab}
 Return
 
 
-; Arrow keys with j, k, l, semi-colon and a, s, d, f
+
+; Two additional sets of arrow kwys with their relevant Control and Shift functions
+; Alt + jkl; and Alt + asdf --> arrow keys
 !j::
 Send {left}
 Return
@@ -181,8 +189,7 @@ Return
 Send +^{right}
 Return
 
-
-; Switch windows virtual desktop for j and semi-colon
+; Additional windows key functions for jkl; arrow keys
 !^#J::
 Send ^#{left}
 Return
@@ -192,6 +199,7 @@ Send ^#{right}
 Return
 
 
+; Addtional change volume keys
 ; Volume up and down with side mouse buttons
 XButton1::
 Send {Volume_Down}
@@ -201,8 +209,7 @@ XButton2::
 Send {Volume_Up}
 Return
 
-
-; Volume up and down with ctrl + pgup/pgdn
+; Volume up and down with ctrl + pgup/pgdn (useful for XPS 13 as single-handed volume change is difficult for small handed people)
 ^PgUp::
 Send {Volume_Up}
 Return
@@ -212,7 +219,9 @@ Send {Volume_Down}
 Return
 
 
-; Vertical splitscreen
+; Vertical splitscreen (similar to Windows Key + Left/Right Arrow but for Up and down splitscreen)
+; Not own coding, taken from source than can no longer find
+
 ; Move window up
 +#Up::
 WinGet MinMax, MinMax, A
@@ -274,7 +283,7 @@ return
 return
 
 
-; Hotkey for specific chrome windows (BROKEN)
+; Hotkey for specific chrome windows (work in progress)
 ^F1::
 IfWinNotExist, ahk_exe chrome.exe
     Run, chrome.exe
