@@ -201,13 +201,13 @@ Return
 
 ; Addtional change volume keys
 ; Volume up and down with side mouse buttons
-XButton1::
-Send {Volume_Down}
-Return
+; XButton1::
+; Send {Volume_Down}
+; Return
 
-XButton2::
-Send {Volume_Up}
-Return
+; XButton2::
+; Send {Volume_Up}
+; Return
 
 ; Volume up and down with ctrl + pgup/pgdn (useful for XPS 13 as single-handed volume change is difficult for small handed people)
 ^PgUp::
@@ -283,120 +283,71 @@ return
 return
 
 
-; Hotkey for specific chrome windows (work in progress)
-^F1::
-IfWinNotExist, ahk_exe chrome.exe
-    Run, chrome.exe
-Sendinput {LWin & 6}
-Return
 
-^F2::
-IfWinNotExist, ahk_exe chrome.exe
-    Run, chrome.exe
-Send {#, down}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {#, up}
-Return
-
-^F3::
-IfWinNotExist, ahk_exe chrome.exe
-    Run, chrome.exe
-Send {#, down}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {#, up}
-Return
-
-^F4::
-IfWinNotExist, ahk_exe chrome.exe
-    Run, chrome.exe
-Send {#, down}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {6}
-Sleep, 50
-Send {#, up}
-
-; !1::
-; IfWinNotExist, ahk_class CabinetWClass
-; 	Run, explorer.exe
-; GroupAdd, kerryexplorers, ahk_class CabinetWClass
-; if WinActive ("ahk_exe Explorer.EXE")
-; 	GroupActivate, kerryexplorers, r
-; else WinActivate ahk_class CabinetWClass
-; Return
-
-; !2::
-; IfWinNotExist, ahk_class Chrome_WidgetWin_1
-; 	Run, chrome.exe
-; if WinActive("ahk_class Chrome_WidgetWin_1")
-; 	Send ^{tab}
-; else
-; 	WinActivate ahk_class Chrome_WidgetWin_1
-; Return
-
-; F8::
-; IfWinNOtExist, ahk_class Qt5QWindowIcon
-; 	Run, Resolve.exe
-; WinActivate ahk_class Qt5QWindowIcon
-; Return    
+; Application Switcher
+;Switch MS Edge and cycle through its windows
+F17::
+SetTitleMatchMode, regEx
+		    
+Process, Exist, msedge.exe    
+If (errorlevel = 0)
+    Run, msedge.exe
+else    
+    GroupAdd, allmsedges, Microsoft.*Edge
+    
+if WinActive("Microsoft.*Edge")
+    GroupActivate, allmsedges, r
+else
+    WinActivate, Microsoft.*Edge
+return
 
 
-; Multiple alt-tab macros
-; ^F1::
-; send,{LAlt down}
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; send,{LAlt up}
-; Return
 
-; ^F2::
-; send,{LAlt down}
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; send,{LAlt up}
-; Return
+; For GTAO
+; Equips super heavy armor and exits menu
+F13::
+SendPlay, m
+Sleep, 120
+SendPlay {Down}{Enter}{Down}{Down}{Enter}
+SendPlay {Down}{Down}{Down}{Down}{Enter}{m}
+return
 
-; ^F3::
-; send,{LAlt down}
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; send,{LAlt up}
-; Return
++F13::
+; Opens snack menu
+SendPlay, m
+Sleep, 120
+Send {Down{Enter}{Up}{Enter}
+return
 
-; ^F4::
-; send,{LAlt down}
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; Sleep, 50
-; send,{TAB}
-; send,{LAlt up}
-; Return
+
+
+; For BTD Battles
+; Reassigns hotkeys for better experience
+#IfWinActive, ahk_exe Battles-Win.exe
+s::
+Send, {BackSpace}
+return
+
+d::
+Send, {,}
+return
+
+f::
+Send, {.}
+return
+q::
+Send, 1
+return
+
+w::
+Send, 2
+return
+
+e::
+Send, 3
+return
+
+r::
+Send, 4
+return
+
