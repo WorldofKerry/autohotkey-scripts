@@ -287,6 +287,7 @@ return
 ; Application Switcher
 ;Switch MS Edge and cycle through its windows
 F17::
+!Capslock::
 SetTitleMatchMode, regEx
 		    
 Process, Exist, msedge.exe    
@@ -299,7 +300,21 @@ if WinActive("Microsoft.*Edge")
     GroupActivate, allmsedges, r
 else
     WinActivate, Microsoft.*Edge
+Sleep, 1000
 return
+
+
+
+; Shortcut keys to open programs
+; For Notion
+!^+N::
+WinActivate, ahk_exe Notion.exe
+return
+
+; For Todoist (BROKEN)
+;!^+T::
+;WinActivate, Todoist
+;return
 
 
 
@@ -351,3 +366,13 @@ r::
 Send, 4
 return
 
+
+
+; For Notion
+; Allows mouse macros
+#IfWinActive, ahk_exe Notion.exe
+XButton1::
+Send, ^[
+
+XButton2::
+Send, ^]
