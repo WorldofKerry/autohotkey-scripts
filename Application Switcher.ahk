@@ -300,7 +300,6 @@ if WinActive("Microsoft.*Edge")
     GroupActivate, allmsedges, r
 else
     WinActivate, Microsoft.*Edge
-Sleep, 1000
 return
 
 
