@@ -1,10 +1,3 @@
-; Set lock keys permanently
-; Num Lock
-SetNumlockState, AlwaysOn
-Return
-
-
-
 ; Turn underutilized keys to more useful functions
 ; Control + Capslock --> Capslock
 ^Capslock::
@@ -33,7 +26,8 @@ Send {enter}
 Return
 
 ^Numlock::
-Send {Numlock}
+Send {NumLock} ; Currently really wierd behaviour
+; SetNumlockState, % GetKeyState("Numlock","t") ? "Off" : "On" ;toggle numslock
 Return
 
 Numlock::
