@@ -26,3 +26,23 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; XButton2::
 ; Send {Volume_Up}
 ; Return
+
+F20::
+Send ^{F13}
+Return
+
+F21::
+Send ^{F14}
+Return
+
+F22::
+Send ^{F15}
+Return
+
+F23::
+Send ^{F16}
+Return
+
+F24::
+Send ^{F17}
+Return
