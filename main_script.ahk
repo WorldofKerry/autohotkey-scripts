@@ -15,8 +15,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Include, replace_useless_keys.ahk
 ; #Include, xps_13_volume_small_hands.ahk
 
-
-
 ; Addtional change volume keys
 ; Volume up and down with side mouse buttons
 ; XButton1::
@@ -26,6 +24,23 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; XButton2::
 ; Send {Volume_Up}
 ; Return
+
+F13::
+Send {Right}
+Return
+
+F14::
+Send {Left}
+Return
+
+F15::
+Send {Ctrl down}
+Return
+
+F15 up::
+Send {Ctrl up}
+Return
+
 
 F20::
 Send ^{F13}
