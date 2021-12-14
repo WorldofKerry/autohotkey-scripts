@@ -16,11 +16,16 @@ Else
     WinActivate, Microsoft.*Edge
 Return
 
-If WinActive("Microsoft.*Edge")
-    F13::
-    Send ^{Tab}
-    Return
-    F14::
-    Send ^+{Tab}
-    Return
+
+#IfWinActive  ahk_exe msedge.exe
+F13::
+Send ^{w}
 Return
+
+F14::
+Send ^{Click}
+Return
+
+; F14 up::
+; Send {Ctrl up}
+; Return

@@ -25,14 +25,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Send {Volume_Up}
 ; Return
 
-F15::
-Send {Enter}
-Return
-
-F18::
-Send {Tab}
-Return
-
 F20::
 Send ^{F13}
 Return
